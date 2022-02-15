@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+# Copyright (C) 2022 Luca Cristiano (Zekromaster) <dev@zekromaster.net>
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see http://www.gnu.org/licenses/.
+
+DATADIR="${DATADIR:-"${HOME}/adisurc"}"
+FILESDIR="${DATADIR}/files"
+DATABASE_MENUS="${DATADIR}/menus.csv"
+DATABASE_DISHES="${DATADIR}/dishes.csv"
+INTERNAL="${DATADIR}/.cacher_data"
+STARTING_ID="${STARTING_ID:-3335}"
+
+export DATADIR
+export FILESDIR
+export DATABASE_MENUS
+export DATABASE_DISHES
+export INTERNAL
+export STARTING_ID
+
+echo "Initializing File Directory and Database"
+sh init_database.sh
+
+echo "Downloading"
+sh downloader.sh
+
+echo "Converting to Text"
+sh textify.sh
+
+if test ! -z $CONVERT_PNG;
+then
+	echo "Converting to Image"
+	sh imageify.sh
+fi
+
+echo "Populating Servings DB"
+sh insert_servings.sh
