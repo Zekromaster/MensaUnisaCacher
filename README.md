@@ -9,11 +9,10 @@ always keep it updated.
 All data downloaded is, obviously, in Italian.
 
 ## Non-POSIX Dependencies
-The software should run on with both GNU and BusyBox coreutils, plus
+The software should run with both GNU and BusyBox coreutils, plus
 the following:
 * `curl`
 * `perl`
-* `miller`
 * poppler-utils (specifically, `pdftotext`, and `pdftoppm` if running with
 the `CONVERT_PNG` option)
 * Liberation fonts or Arial and Times New Roman fonts (if running with 
