@@ -23,7 +23,7 @@ fi
 
 if test ! -f "${DATABASE_DISHES}";
 then
-	echo "id;serving;contents" > "${DATABASE_DISHES}"
+	echo "menu;serving;contents" > "${DATABASE_DISHES}"
 fi
 
 if test ! -f "${INTERNAL}/latest_menu_id";

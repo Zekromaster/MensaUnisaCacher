@@ -77,7 +77,7 @@ one with the highest id for the specified date.
 This table contains data about the individual dishes server.
 
 Each row has the following three columns, in order:
-* `id` is the numeric `id` of the menu this dish is part of;
+* `menu` is the numeric `id` of the menu this dish is part of;
 * `serving` is the specific serving represented. `0-2` for First, Second and Third serving, `3` for the
 contents of the takeaway basket;
 * `contents` is the actual dish as described on the menu
