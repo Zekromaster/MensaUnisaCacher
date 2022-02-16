@@ -1,6 +1,6 @@
 # MensaUnisa/Cacher
 A simple set of scripts that converts University of Salerno's refectory's online
-published menus to an sqlite database and also downloads them in three different 
+published menus to a set of csv tables and also downloads them in three different 
 formats.
 
 Run by running `./execute` inside the directory, or put it in your crontab to 
