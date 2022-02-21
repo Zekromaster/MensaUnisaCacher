@@ -19,7 +19,7 @@ do
 	if test ! -f "$(echo $file | sed 's/pdf/txt/')";
 	then
 		TEXT="$(pdftotext "$file" -)"
-		TEXT="$(echo "$TEXT" | tail -n +17 | sed -n "/I prodotti con \* sono surgelati/q;p" | grep "^[[:upper:]][[:lower:]]\|^\=" | perl -0pe 's/Pasta \(glutine\).*\nBoiled.*/----/' | perl -0pe 's/Mozzarella(.|\n)*Freddi/----/' | perl -0pe 's/Insalata (M|m)ista(.|\n)*Cestino/----/' | head -n -1 | grep -v "Take " | sed 's/\= //' | sed -E '$ s/ \([^)]*\)//g' | sed '$ s/ - /\n/')"
+		TEXT="$(echo "$TEXT" | tail -n +17 | sed -n "/I prodotti con \* sono surgelati/q;p" | grep "^[[:upper:]][[:lower:]]\|^\=" | perl -0pe 's/Pasta \(glutine\).*\nBoiled.*/----/i' | perl -0pe 's/Mozzarella(.|\n)*Freddi/----/i' | perl -0pe 's/Insalata Mista(.|\n)*Cestino/----/i' | head -n -1 | grep -v "Take " | sed 's/\= //' | sed -E '$ s/ \([^)]*\)//g' | sed '$ s/ - /\n/')"
 		echo "$TEXT" > "$(echo $file | sed 's/pdf/txt/')"
 	fi
 done
