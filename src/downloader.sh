@@ -130,6 +130,7 @@ get_meal() {
 }
 
 LATEST_ID=$(get_latest_id)
+echo "Starting with ID ${LATEST_ID}"
 while true
 do
 	FILENAME=$(get_filename_by_id "${LATEST_ID}")
@@ -150,5 +151,7 @@ do
 		fi
 	fi
 	LATEST_ID=$((LATEST_ID+1))
+	echo "Id advanced to ${LATEST_ID}"
 done
+echo "Concluded with last ID checked equal to ${LATEST_ID}"
 echo "${LATEST_ID}" > "${INTERNAL}/latest_menu_id"
