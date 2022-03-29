@@ -1,5 +1,6 @@
 # MensaUnisa/Cacher Proof of Concept
-> &#x26a0;&#xfe0f; **This is a proof of concept**: Development of the new version (which is, sadly, not written in POSIX Shell) is done on the main branch
+> &#x26a0;&#xfe0f; **This is a proof of concept**: Development of the new version
+> (which is, sadly, not written in POSIX Shell) is done on the main branch
 
 A simple set of scripts that converts University of Salerno's refectory's online
 published menus to a set of csv tables and also downloads them in three different 
