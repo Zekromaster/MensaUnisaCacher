@@ -1,0 +1,43 @@
+name: Create and Publish Image
+
+on:
+  push:
+    branches: proof_of_concept
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Turn repo name lowercase
+        id: lowercase-reponame
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ github.repository }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push Docker image
+        if: github.ref != 'refs/heads/main'
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: | 
+            ${{ env.REGISTRY }}/${{ steps.lowercase-reponame.outputs.lowercase }}/${{ github.ref_name }}:latest
+            ${{ env.REGISTRY }}/${{ steps.lowercase-reponame.outputs.lowercase }}/${{ github.ref_name }}:${{ github.sha }}
